@@ -8,7 +8,7 @@ from assertpy import assert_that
 
 from tests.base_test import BaseTest
 
-users = [("nirt236@gmail.com", "123456"), ("elias@gmail.com", "12345Tr")]
+users = [("mvlebed@yandex.ru", "12345Tr")]
 
 
 @allure.severity(allure.severity_level.BLOCKER)
@@ -21,7 +21,7 @@ class TestLogin(BaseTest):
     @pytest.mark.parametrize("email, password", users)
     @pytest.mark.run(order=3)
     def test_invalid_login(self, email: str, password: str, json_data: dict):
-        self.about_page.click_login_link()
+        #self.about_page.click_login_link()
         self.login_page.login(email, password)
         expected_error_message = json_data["login"]["error_message"]
         assert_that(expected_error_message).is_equal_to(

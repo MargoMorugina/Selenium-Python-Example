@@ -2,12 +2,12 @@
 skip = ["env", "venv"]
 profile = "black"
 [tool.poetry]
-name = "selenium-python-example"
+name = "env_selenium"
 version = "0.1.0"
 description = "Selenium Python example project with pytest and Allure report"
-authors = ["Nir Tal <nirt236@gmail.com>"]
+authors = ["Margo"]
 readme = "README.md"
-packages = [{include = "selenium_python_example"}]
+packages = [{include = "env_selenium"}]
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
@@ -16,7 +16,7 @@ pre-commit = "^3.4.0"
 
 [tool.pytest.ini_options]
 addopts = ["--alluredir=allure-results", "--color=yes", "-s", "-p no:logging"]
-base_url = 'https://www.involve.me/'
+base_url = 'https://app.involve.me/login'
 
 markers = [
     "security: marks security tests",

@@ -45,6 +45,7 @@ class BasePage:
         el: WebElement = self.wait.until(
             expected_conditions.element_to_be_clickable(locator)
         )
+        el.click()
         el.clear()
         self._highlight_element(el, "green")
         el.send_keys(txt)

@@ -379,7 +379,7 @@ description = "Simple creation of data classes from dictionaries."
 optional = false
 python-versions = ">=3.6"
 files = [
-    { file = "dacite-1.8.1-py3-none-any.whl", hash = "sha256:cc31ad6fdea1f49962ea42db9421772afe01ac5442380d9a99fcf3d188c61afe" },
+    {file = "dacite-1.8.1-py3-none-any.whl", hash = "sha256:cc31ad6fdea1f49962ea42db9421772afe01ac5442380d9a99fcf3d188c61afe"},
 ]
 
 [package.extras]
@@ -439,13 +439,13 @@ files = [
 
 [[package]]
 name = "identify"
-version = "2.5.27"
+version = "2.5.29"
 description = "File identification library for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "identify-2.5.27-py2.py3-none-any.whl", hash = "sha256:fdb527b2dfe24602809b2201e033c2a113d7bdf716db3ca8e3243f735dcecaba"},
-    {file = "identify-2.5.27.tar.gz", hash = "sha256:287b75b04a0e22d727bc9a41f0d4f3c1bcada97490fa6eabb5b28f0e9097e733"},
+    {file = "identify-2.5.29-py2.py3-none-any.whl", hash = "sha256:24437fbf6f4d3fe6efd0eb9d67e24dd9106db99af5ceb27996a5f7895f24bf1b"},
+    {file = "identify-2.5.29.tar.gz", hash = "sha256:d43d52b86b15918c137e3a74fff5224f60385cd0e9c38e99d07c257f02f151a5"},
 ]
 
 [package.extras]
@@ -705,8 +705,8 @@ description = "A pytest plugin that allows multiple failures per test."
 optional = false
 python-versions = ">=3.7"
 files = [
-    { file = "pytest_check-2.2.2-py3-none-any.whl", hash = "sha256:c51dd795e3a054734f6f779c5a3691985bd455007f9643eff0c2e743aff36552" },
-    { file = "pytest_check-2.2.2.tar.gz", hash = "sha256:7ae7e99e90f127d3d02d29c02a8b2d95b5a87db3d30dccd169e9fd66c44fdbe8" },
+    {file = "pytest_check-2.2.2-py3-none-any.whl", hash = "sha256:c51dd795e3a054734f6f779c5a3691985bd455007f9643eff0c2e743aff36552"},
+    {file = "pytest_check-2.2.2.tar.gz", hash = "sha256:7ae7e99e90f127d3d02d29c02a8b2d95b5a87db3d30dccd169e9fd66c44fdbe8"},
 ]
 
 [package.dependencies]
@@ -840,19 +840,19 @@ urllib3 = {version = ">=1.26,<3", extras = ["socks"]}
 
 [[package]]
 name = "setuptools"
-version = "68.2.0"
+version = "68.2.2"
 description = "Easily download, build, install, upgrade, and uninstall Python packages"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "setuptools-68.2.0-py3-none-any.whl", hash = "sha256:af3d5949030c3f493f550876b2fd1dd5ec66689c4ee5d5344f009746f71fd5a8"},
-    {file = "setuptools-68.2.0.tar.gz", hash = "sha256:00478ca80aeebeecb2f288d3206b0de568df5cd2b8fada1209843cc9a8d88a48"},
+    {file = "setuptools-68.2.2-py3-none-any.whl", hash = "sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a"},
+    {file = "setuptools-68.2.2.tar.gz", hash = "sha256:4ac1475276d2f1c48684874089fefcd83bd7162ddaafb81fac866ba0db282a87"},
 ]
 
 [package.extras]
 docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-lint", "sphinx-notfound-page (>=1,<2)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
 testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.develop (>=7.21)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-ruff", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
-testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "packaging", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
+testing-integration = ["build[virtualenv] (>=1.0.3)", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "packaging (>=23.1)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
 name = "six"
@@ -931,13 +931,13 @@ sortedcontainers = "*"
 
 [[package]]
 name = "trio-websocket"
-version = "0.10.3"
+version = "0.10.4"
 description = "WebSocket library for Trio"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "trio-websocket-0.10.3.tar.gz", hash = "sha256:1a748604ad906a7dcab9a43c6eb5681e37de4793ba0847ef0bc9486933ed027b"},
-    {file = "trio_websocket-0.10.3-py3-none-any.whl", hash = "sha256:a9937d48e8132ebf833019efde2a52ca82d223a30a7ea3e8d60a7d28f75a4e3a"},
+    {file = "trio-websocket-0.10.4.tar.gz", hash = "sha256:e66b3db3e2453017431dfbd352081006654e1241c2a6800dc2f43d7df54d55c5"},
+    {file = "trio_websocket-0.10.4-py3-none-any.whl", hash = "sha256:c7a620c4013c34b7e4477d89fe76695da1e455e4510a8d7ae13f81c632bdce1d"},
 ]
 
 [package.dependencies]
@@ -1014,8 +1014,8 @@ description = "Open source, self hosted solution for visual testing and managing
 optional = false
 python-versions = ">=3.6"
 files = [
-    { file = "visual_regression_tracker-4.9.0-py2.py3-none-any.whl", hash = "sha256:06d782d54c1b333bc1b204ce3c8a925c2505eda285a35c8856ed1782a8fa5d09" },
-    { file = "visual_regression_tracker-4.9.0.tar.gz", hash = "sha256:b7937e9f6229623c14260d5a046a8e0c2d7ac9db0730442ea7ac507d531f97e4" },
+    {file = "visual_regression_tracker-4.9.0-py2.py3-none-any.whl", hash = "sha256:06d782d54c1b333bc1b204ce3c8a925c2505eda285a35c8856ed1782a8fa5d09"},
+    {file = "visual_regression_tracker-4.9.0.tar.gz", hash = "sha256:b7937e9f6229623c14260d5a046a8e0c2d7ac9db0730442ea7ac507d531f97e4"},
 ]
 
 [package.dependencies]
