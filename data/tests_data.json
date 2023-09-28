@@ -4,9 +4,9 @@
     "success_message": "A reset link has been sent to the email address, if it has been used to register for an account."
   },
   "login": {
-    "error_message": "These credentials do not match our records.",
-    "lg_page_title": "Log in",
-    "ws_page_title": "My Workspace"
+    "error_message": "Неверный пароль или Email/номер телефона",
+    "lg_page_title": "Вы успешно вышли из системы.",
+    "ws_page_title": "Мои задачи"
   },
   "workspace": {
     "final_slide": "Thank you page",

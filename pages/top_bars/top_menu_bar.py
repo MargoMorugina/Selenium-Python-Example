@@ -9,6 +9,7 @@ class TopMenuBar(BasePage):
 
     LOGIN_LINK = (By.CSS_SELECTOR, ".login")
     REGISTER_LINK = (By.CSS_SELECTOR, ".register")
+    PROFILE_MENU = (By.CSS_SELECTOR,".rounded - circle.bg - secondary.p - 1")
 
     def __init__(self, driver, wait):
         super().__init__(driver, wait)

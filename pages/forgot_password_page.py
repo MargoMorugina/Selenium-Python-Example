@@ -5,13 +5,9 @@ from selenium.webdriver.common.by import By
 
 from pages.base_page import BasePage
 
-
 class ForgotPasswordPage(BasePage):
     EMAIL_FIELD: Tuple[str, str] = (By.CSS_SELECTOR, "[name=email]")
-    SEND_PASSWORD_RESET_LINK_BUTTON: Tuple[str, str] = (
-        By.CSS_SELECTOR,
-        "[type=submit]",
-    )
+    SEND_PASSWORD_RESET_LINK_BUTTON: Tuple[str, str] = (By.CSS_SELECTOR,"[type=submit]")
     ERROR_MSG: Tuple[str, str] = (By.CSS_SELECTOR, ".alert-danger")
     SUCCESS_MSG: Tuple[str, str] = (By.CSS_SELECTOR, ".alert-success")
     PAGE_TITLE: Tuple[str, str] = (By.CSS_SELECTOR, ".e-form-heading")
