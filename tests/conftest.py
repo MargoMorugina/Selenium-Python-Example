@@ -161,8 +161,8 @@ def pytest_runtest_setup(item: Item) -> None:
 
 def pytest_runtest_teardown() -> None:
     driver.quit()
-    del driver
-    gc.collect()
+    #del driver
+    #gc.collect()
 
 
 def pytest_exception_interact(node: Item, report: TestReport) -> None:

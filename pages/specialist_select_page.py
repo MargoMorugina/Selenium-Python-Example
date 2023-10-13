@@ -1,26 +1,16 @@
-import os
-import time
-from lib2to3.pgen2 import driver
-
-from selenium.webdriver.chrome import webdriver
-from selenium import webdriver
-
-from typing import Tuple, Union
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.support import expected_conditions
 from pages.base_page import BasePage
 
 class SelectSpecialistPage(BasePage):
 
-    SPECIALISTS_LIST = "#main-content > div > div:nth-child(2) > div > div.content.flex-fill > div > div.row.row-cols-1.row-cols-lg-2.row-cols-xl-3.g-4.mb-4.mt-1"
+    SPECIALISTS_LIST = "body > div.modal.fade.show.modal-static > div > div > div.modal-body > div > div > div.content.flex-fill"
     PROFILE_LIST = ".select-dropdown.open"
     COUNTRY_LIST = ".select-options-list"
 
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
 
-    def get_list_from_market(self, name: str):
+    def get_operator_from_market(self, name: str):
         specialist_list = self.driver.find_element(By.CSS_SELECTOR, self.SPECIALISTS_LIST)
         child_list = specialist_list.find_elements(By.CSS_SELECTOR, "*")
         for child in child_list:
@@ -68,3 +58,4 @@ class SelectSpecialistPage(BasePage):
             if name_element.text == specialist_country:
                 child.click()
                 break
+

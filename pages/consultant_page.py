@@ -57,7 +57,7 @@ class ConsultantPage(BasePage):
     SUBMIT_PERSONAL_DATA: Tuple[str, str] = (By.CSS_SELECTOR, ".btn - primary")
     STATUS_INVITE_TITLE: Tuple[str, str] = (By.CSS_SELECTOR, "# tab2 > div > div > div > table > tbody > tr > td:nth-child(4) > div > span > span")
     "market search button"
-    MARKET_SEARCH_BTN: Tuple[str, str] = (By.CSS_SELECTOR, "#main-content > div > div:nth-child(2) > div > div.sidebar.shadow-3.mb-5 > div.mb-3.d-grid.gap-2.px-3.d-flex.gap-3 > button.btn.btn-primary.ripple-surface")
+    MARKET_SEARCH_BTN: Tuple[str, str] = (By.CSS_SELECTOR, "#main-content .sidebar button.btn-primary")
 
     FEMALE_BTN: Tuple[str, str] = (By.CSS_SELECTOR, ".sidebar.shadow-3.mb-5 > .section:nth-child(1) .mb-3:nth-child(4) .form-check.mb-0:nth-child(3) .form-check-input")
 
@@ -132,6 +132,7 @@ class ConsultantPage(BasePage):
 
     @allure.step("Search button")
     def search_btn(self) -> None:
+        self.scroll_to_bottom()
         self.click(self.MARKET_SEARCH_BTN)
 
     @allure.step("Search profile type on market")
@@ -145,6 +146,14 @@ class ConsultantPage(BasePage):
     @allure.step("mail/femail btn")
     def femail_btn(self) -> None:
         self.click(self.FEMALE_BTN)
+
+    @allure.step("go to externalposition page")
+    def go_to_externalposition_page(self) -> None:
+        time.sleep(3)
+        self.click(self.SELECT_PERFORMERS)
+        self.click(self.SELECT_EXTERNAL_EXPERTS)
+        self.click(self.SELECT_DB_EXPERTS)
+        time.sleep(1)
 
 
 
