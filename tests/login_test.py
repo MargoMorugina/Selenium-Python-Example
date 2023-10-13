@@ -7,7 +7,6 @@ import pytest
 from assertpy import assert_that
 from tests.base_test import BaseTest
 
-users = [("lebed.rita@internet.ru", "DP4LoU1ropo=3")]
 
 @allure.severity(allure.severity_level.BLOCKER)
 @allure.epic("Security")
@@ -16,21 +15,15 @@ users = [("lebed.rita@internet.ru", "DP4LoU1ropo=3")]
 class TestLogin(BaseTest):
     @allure.description("invalid login")
     @allure.title("Login with invalid credentials test")
-    @pytest.mark.parametrize("email, password", users)
     @pytest.mark.run(order=3)
 
-    def test_invalid_login(self, email: str, password: str, json_data: dict):
+    def test_invalid_login(self, json_data: dict):
         """fixed"""
-        self.login_page.login(email, password)
+        invalid_email = json_data["inv_creds"]["inv_email"]
+        invalid_password = json_data["inv_creds"]["inv_password"]
+        self.login_page.login(invalid_email, invalid_password)
         expected_error_message = json_data["login"]["error_message"]
-        assert_that(expected_error_message).is_equal_to(
-            self.login_page.get_error_message()
-        )
-
-    @allure.description("Basic sanity")
-    @pytest.mark.devRun
-    def test_sanity(self, base_url):
-        assert_that(self.driver.current_url).is_equal_to(base_url)
+        assert_that(expected_error_message).is_equal_to(self.login_page.get_error_message())
 
     @allure.description("valid login")
     @allure.title("Login with valid credentials test")
@@ -55,9 +48,4 @@ class TestLogin(BaseTest):
         expected_page_title = json_data["login"]["lg_page_title"]
         assert_that(expected_page_title).is_equal_to(self.login_page.get_page_logout_title())
 
-    @allure.description("Skip Test example")
-    @allure.title("Skipped test example")
-    @allure.label("owner", "nir tal")
-    @pytest.mark.skip(reason="skip test example")
-    def test_skip(self):
-        pass
+

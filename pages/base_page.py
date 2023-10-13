@@ -1,13 +1,22 @@
+import os
 from typing import Tuple, Union
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains, Chrome, Edge, Firefox
+from selenium.webdriver.chrome import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.webdriver import WebDriver
+from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.expected_conditions import (
     StaleElementReferenceException,
 )
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+from selenium import webdriver
 
 
 class BasePage:
@@ -15,7 +24,11 @@ class BasePage:
 
     def __init__(self, driver: Union[Chrome, Firefox, Edge], wait: WebDriverWait):
         self.driver = driver
+        self.default_driver = driver
+        self.default_wait = wait
         self.wait = wait
+        self.new_driver = None
+        self.new_wait = None
 
     def edit_cookie(self, cookie_key: str, cookie_value: str):
         cookie = self.wait.until(
@@ -33,6 +46,31 @@ class BasePage:
                 "expiry": (cookie["expiry"]),
             }
         )
+
+    def create_new_tab(self):
+        self.driver.execute_script("window.open('about:blank', '_blank');")
+
+    def set_activ_new_window(self):
+        if self.new_driver is None:
+            chrome_options1 = webdriver.ChromeOptions()
+            chrome_options1.add_argument("--user-data-dir=" + os.getcwd() + "\\tmp")
+            self.new_driver = webdriver.Chrome(options=chrome_options1)
+            self.new_wait = WebDriverWait(self.new_driver, 10)
+        self.driver = self.new_driver
+        self.wait = self.new_wait
+
+    def set_active_default_window(self):
+        self.driver = self.default_driver
+        self.wait = self.default_wait
+
+    def go_to_tab(self, index: int):
+        self.driver.switch_to.window(self.driver.window_handles[index])
+
+    """def go_to_alert(self):
+        self.driver.switch_to.alert"""
+
+    def go_to_url(self, url: str):
+        self.driver.get(url)
 
     def click(self, locator: Tuple[str, str]) -> None:
         el: WebElement = self.wait.until(
@@ -98,3 +136,13 @@ class BasePage:
             + "');},400);",
             webelement,
         )
+
+
+
+
+
+
+
+
+
+

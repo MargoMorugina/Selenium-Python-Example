@@ -1,4 +1,5 @@
 import base64
+import gc
 import json
 import logging
 from collections import defaultdict
@@ -28,7 +29,9 @@ from pages.templates_page import TemplatesPage
 from utils.excel_parser import ExcelParser
 from utils.vrt_helper import VrtHelper
 from utils.web_driver_listener import DriverEventListener
-
+from pages.profile_page import ProfilePage
+from pages.consultant_page import ConsultantPage
+from pages.specialist_select_page import SelectSpecialistPage
 
 def pytest_addoption(parser: Parser) -> None:
     """Reads parameters from pytest command line."""
@@ -71,22 +74,7 @@ def secret_data() -> None:
 
 @pytest.fixture(scope="session")
 def vrt_helper():
-    """Fixture for creating a Visual Regression Tracker (VRT) helper object.
 
-    This fixture sets up a Visual Regression Tracker helper object that provides
-    convenient methods for capturing and comparing screenshots with a Visual Regression
-    Tracker (VRT) server. It starts the VRT server before all tests and stops it
-    after all tests have completed.
-
-    Usage:
-    1. Import this fixture into your test module.
-    2. Use the returned `VrtHelper` instance as a parameter in your test functions to
-       access methods for VRT-related tasks.
-
-    Links:
-    - Visual Regression Tracker GitHub Repository: https://github.com/Visual-Regression-Tracker/examples-python
-    - Visual Regression Tracker SDK for Python: https://github.com/Visual-Regression-Tracker/sdk-python
-    """
     vrt = VisualRegressionTracker()
     vrt.start()
     yield VrtHelper(driver, vrt, wait)
@@ -166,10 +154,15 @@ def pytest_runtest_setup(item: Item) -> None:
     item.cls.templates_page = TemplatesPage(driver, wait)
     item.cls.project_type_page = ProjectTypePage(driver, wait)
     item.cls.project_edit_page = ProjectEditPage(driver, wait)
+    item.cls.profile_page = ProfilePage(driver, wait)
+    item.cls.consultant_page = ConsultantPage(driver, wait)
+    item.cls.specialist_select_page = SelectSpecialistPage(driver, wait)
 
 
 def pytest_runtest_teardown() -> None:
     driver.quit()
+    del driver
+    gc.collect()
 
 
 def pytest_exception_interact(node: Item, report: TestReport) -> None:

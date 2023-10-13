@@ -1,12 +1,17 @@
 {
   "forgot_password": {
-    "error_message": "We can't find a user with that e-mail address.",
-    "success_message": "A reset link has been sent to the email address, if it has been used to register for an account."
+    "error_message": "Проверьте свою почту для сброса пароля",
+    "success_message": "Проверьте свою почту для сброса пароля"
   },
   "login": {
     "error_message": "Неверный пароль или Email/номер телефона",
     "lg_page_title": "Вы успешно вышли из системы.",
     "ws_page_title": "Мои задачи"
+  },
+  "profile": {
+    "sp_page_title":"Простой",
+    "dp_page_title":"Врач",
+    "lk_page_title": "ООО «Лайт Контакт»"
   },
   "workspace": {
     "final_slide": "Thank you page",
@@ -17,5 +22,30 @@
     "project_name": "test project",
     "project_type": "quiz",
     "template_type": "Blank"
-  }
+  },
+  "inv_creds": {
+    "inv_email":"someemail@gmail.com",
+    "inv_password":"12Gyfgh3"
+  },
+  "new_position_for_operator":{
+     "name_position": "Домашний оператор",
+     "position_title":  "Создана"
+  },
+  "comments": {
+    "invite_comment": "Добрый день! Наша компания рада пригласить Вас на позицию Домашний оператор кол центра"
+  },
+  "status": {
+    "status_invite": "Отправлено"
+  },
+  "operators_name": {
+    "operator_1": "Козлюк Роман Сергеевич",
+    "operator_2": "Лебедь Рита Васильевна"
+  },
+  "profile_types": {
+    "profile_type_operator": " Домашний оператор кол-центра "
+  },
+  "specialist_country": {
+    "country_name_1": " Россия "
+}
+
 }

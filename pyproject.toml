@@ -17,6 +17,7 @@ pre-commit = "^3.4.0"
 [tool.pytest.ini_options]
 addopts = ["--alluredir=allure-results", "--color=yes", "-s", "-p no:logging"]
 base_url = 'https://sts-q.in.top/'
+operator_url = 'https://sts-q.in.top/Account/Registration?profileType=1'
 
 markers = [
     "security: marks security tests",
