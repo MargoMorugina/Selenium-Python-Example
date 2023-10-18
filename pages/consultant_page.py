@@ -7,6 +7,8 @@ from pages.base_page import BasePage
 from pages.specialist_select_page import SelectSpecialistPage
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class ConsultantPage(BasePage):
     """Login Page."""
@@ -15,9 +17,7 @@ class ConsultantPage(BasePage):
     PASSWORD_FIELD: Tuple[str, str] = (By.CSS_SELECTOR, '#Password')
     CONTINUE_BUTTON: Tuple[str, str] = (By.CSS_SELECTOR, '.btn-primary')
     LOGIN_BUTTON: Tuple[str, str] = (By.CSS_SELECTOR, '#btnSubmit.btn-primary')
-
     SELECT_CONSULTANT_BTN: Tuple[str, str] = (By.CSS_SELECTOR, ".d-flex > .card.col-12.m-2.shadow-3-strong.d-flex:nth-child(4)")
-
     PAGE_CONSULTANT_TITLE: Tuple[str, str] = (By.CSS_SELECTOR, "#navbar > div > div > span")
 
     """create position"""
@@ -35,9 +35,7 @@ class ConsultantPage(BasePage):
     SELECT_OPTION: Tuple[str, str] = (By.CSS_SELECTOR, ".select-dropdown.open .select-option:nth-child(3)")
     INPUT_DATE: Tuple[str, str] = (By.CSS_SELECTOR, ".modal-body .row.mb-3:nth-child(8) .form-outline.datepicker input.form-control")
     SAVE_BTN: Tuple[str, str] = (By.CSS_SELECTOR, ".modal-footer button.btn-primary.ripple-surface")
-
     NEW_POSITION_TITLE: Tuple[str, str] = (By.CSS_SELECTOR, "#main-content > div > div > div:nth-child(2) > div.card > div > p > div > div:nth-child(2)")
-
     SELECT_MARKET: Tuple[str, str] = (By.CSS_SELECTOR, ".sidenav-menu > .sidenav-item:nth-child(4)>.sidenav-collapse.show > .sidenav-item:nth-child(2) > .sidenav-collapse.sidenav-level-2.show >  .sidenav-item:nth-child(3)")
 
     """Approval position and send invites"""
@@ -56,10 +54,10 @@ class ConsultantPage(BasePage):
     ACCEPT_BTN: Tuple[str, str] = (By.CSS_SELECTOR, "div.p - 2: nth - child(1) > button:nth - child(1)")
     SUBMIT_PERSONAL_DATA: Tuple[str, str] = (By.CSS_SELECTOR, ".btn - primary")
     STATUS_INVITE_TITLE: Tuple[str, str] = (By.CSS_SELECTOR, "# tab2 > div > div > div > table > tbody > tr > td:nth-child(4) > div > span > span")
-    "market search button"
-    MARKET_SEARCH_BTN: Tuple[str, str] = (By.CSS_SELECTOR, "#main-content .sidebar button.btn-primary")
 
-    FEMALE_BTN: Tuple[str, str] = (By.CSS_SELECTOR, ".sidebar.shadow-3.mb-5 > .section:nth-child(1) .mb-3:nth-child(4) .form-check.mb-0:nth-child(3) .form-check-input")
+    "pagination"
+    SELECT_PAGE: Tuple[str, str] = (By.CSS_SELECTOR, ".pagination.mb-0  li:nth-child(4) > a")
+    CREATED_POSITION_LIST = "#main-content > div > div > div.saf-container > div > div > table > tbody"
 
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
@@ -84,14 +82,6 @@ class ConsultantPage(BasePage):
         self.click(self.SELECT_DB_EXPERTS)
         self.click(self.ADD_POSITION)
         time.sleep(1)
-
-    @allure.step("Create new position")
-    def select_menu_market(self) -> str:
-        time.sleep(3)
-        self.click(self.SELECT_PERFORMERS)
-        self.click(self.SELECT_EXTERNAL_EXPERTS)
-        self.click(self.SELECT_MARKET)
-
 
     @allure.step("fill form")
     def fill_form_for_new_position(self, name_position: str, current_date: str) -> str:
@@ -130,31 +120,32 @@ class ConsultantPage(BasePage):
     def get_status_of_invite(self) -> str:
         return self.get_text(self.STATUS_INVITE_TITLE)
 
-    @allure.step("Search button")
-    def search_btn(self) -> None:
-        self.scroll_to_bottom()
-        self.click(self.MARKET_SEARCH_BTN)
-
-    @allure.step("Search profile type on market")
-    def search_profile(self) -> None:
-        self.click(self.SELECT_DROPDOWN_LIST_PROFILE)
-
-    @allure.step("Search country of specialist on market")
-    def search_country(self) -> None:
-        self.click(self.SELECT_DROPDOWN_LIST_COUNTRY)
-
-    @allure.step("mail/femail btn")
-    def femail_btn(self) -> None:
-        self.click(self.FEMALE_BTN)
-
     @allure.step("go to externalposition page")
     def go_to_externalposition_page(self) -> None:
         time.sleep(3)
         self.click(self.SELECT_PERFORMERS)
         self.click(self.SELECT_EXTERNAL_EXPERTS)
         self.click(self.SELECT_DB_EXPERTS)
-        time.sleep(1)
+        time.sleep(3)
 
+    @allure.step("go to externalposition page")
+    def go_to_the_page(self) -> None:
+        self.click(self.SELECT_PAGE)
+
+
+
+    @allure.step("go to externalposition page")
+    def select_new_position(self) -> None:
+        list_of_created_position = self.driver.find_element(By.CSS_SELECTOR, self.CREATED_POSITION_LIST)
+        child_created_position_list = list_of_created_position.find_elements(By.CSS_SELECTOR, "tr.table-main-info")
+        for child in child_created_position_list:
+            column_element = child.find_elements(By.CSS_SELECTOR, "tr.table-main-info > td:nth-child(2) > div")
+            if not column_element:
+                first_column = WebDriverWait(child, 10).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, "tr.table-main-info td:nth-child(1)"))
+                )
+                first_column.click()
+                break
 
 
 

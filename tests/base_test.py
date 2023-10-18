@@ -3,6 +3,7 @@ from typing import Union
 from selenium.webdriver import Chrome, Edge, Firefox
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.expertlist_page import ExpertlistPage
 from pages.login_page import LoginPage
 from pages.profile_page import ProfilePage
 from pages.consultant_page import ConsultantPage
@@ -16,4 +17,5 @@ class BaseTest:
     profile_page: ProfilePage
     consultant_page: ConsultantPage
     specialist_select_page: SelectSpecialistPage
+    expertlist_page: ExpertlistPage
 

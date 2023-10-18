@@ -34,7 +34,7 @@ class ExpertlistPage(BasePage):
     def search_btn(self) -> None:
         self.scroll_to_bottom()
         self.click(self.MARKET_SEARCH_BTN)
-        time.sleep(5)
+        time.sleep(3)
 
     @allure.step("Search profile type on market")
     def search_profile(self) -> None:

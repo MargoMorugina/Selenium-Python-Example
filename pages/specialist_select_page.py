@@ -7,6 +7,8 @@ class SelectSpecialistPage(BasePage):
     PROFILE_LIST = ".select-dropdown.open"
     COUNTRY_LIST = ".select-options-list"
 
+    CREATED_POSITION_LIST = "#main-content > div > div > div.saf-container > div > div > table > tbody"
+
     def __init__(self, driver, wait):
         super().__init__(driver, wait)
 
@@ -59,3 +61,16 @@ class SelectSpecialistPage(BasePage):
                 child.click()
                 break
 
+
+    def select_empty_position(self, position_number: str):
+        list_of_created_position = self.driver.find_element(By.CSS_SELECTOR, self.CREATED_POSITION_LIST)
+        child_created_position_list = list_of_created_position.find_elements(By.CSS_SELECTOR, "tr.table-main-info td:nth-child(2)")
+        for child in child_created_position_list:
+            name_element = child.find_elements(By.CSS_SELECTOR, "tr.table-main-info td:nth-child(2)")
+            if len(name_element) == 0:
+                continue
+            name_element = name_element[0]
+            if name_element.text == position_number:
+                #child.find_element(By.CSS_SELECTOR, 'tr.table-main-info td:nth-child(1)').click()
+                child.click()
+                break

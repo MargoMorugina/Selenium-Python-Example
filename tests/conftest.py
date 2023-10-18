@@ -20,6 +20,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from visual_regression_tracker import VisualRegressionTracker
 
 from pages.about_page import AboutPage
+from pages.expertlist_page import ExpertlistPage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.login_page import LoginPage
 from pages.project_edit_page import ProjectEditPage
@@ -147,16 +148,17 @@ def pytest_runtest_setup(item: Item) -> None:
     driver.get(base_url)
     wait = WebDriverWait(driver, 10)
     item.cls.wait = wait
-    item.cls.about_page = AboutPage(driver, wait)
+    #item.cls.about_page = AboutPage(driver, wait)
     item.cls.login_page = LoginPage(driver, wait)
-    item.cls.projects_page = ProjectsPage(driver, wait)
+    #item.cls.projects_page = ProjectsPage(driver, wait)
     item.cls.forget_password_page = ForgotPasswordPage(driver, wait)
-    item.cls.templates_page = TemplatesPage(driver, wait)
-    item.cls.project_type_page = ProjectTypePage(driver, wait)
-    item.cls.project_edit_page = ProjectEditPage(driver, wait)
+    #item.cls.templates_page = TemplatesPage(driver, wait)
+    #item.cls.project_type_page = ProjectTypePage(driver, wait)
+    #item.cls.project_edit_page = ProjectEditPage(driver, wait)
     item.cls.profile_page = ProfilePage(driver, wait)
     item.cls.consultant_page = ConsultantPage(driver, wait)
     item.cls.specialist_select_page = SelectSpecialistPage(driver, wait)
+    item.cls.expertlist_page = ExpertlistPage(driver, wait)
 
 
 def pytest_runtest_teardown() -> None:

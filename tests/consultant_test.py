@@ -7,8 +7,6 @@ import allure
 import pytest
 from assertpy import assert_that
 from tests.base_test import BaseTest
-from pages.specialist_select_page import SelectSpecialistPage
-
 
 # @allure.severity(allure.severity_level.BLOCKER)
 # @allure.epic("Consultant Page")
@@ -32,8 +30,22 @@ class TestConsultant(BaseTest):
         assert_that(expected_new_position_title).is_equal_to(self.consultant_page.get_new_position_title())
 
     def test_add_operator_for_new_position(self, json_data: dict):
+        position_number = json_data["position_number"]["position_number_1"]
         self.consultant_page.consultant_login(os.getenv("EMAIL_CONS"), os.getenv("PASSWORD_CONS"))
         self.consultant_page.go_to_externalposition_page()
+        self.consultant_page.go_to_the_page()
+        time.sleep(5)
+        self.consultant_page.select_new_position()
+        time.sleep(5)
+        #self.specialist_select_page.select_empty_position(position_number)
+
+        #self.consultant_page.approval_position()
+        #self.specialist_select_page.select_operator_from_market(operator_name)
+
+
+
+
+
 
 
     """def test_registration_operator_and_autocreate_position(self, json_data: dict):
@@ -42,11 +54,11 @@ class TestConsultant(BaseTest):
          self.consultant_page.create_new_tab()
          self.consultant_page.go_to_tab(OPERATOR_TAB)
          self.consultant_page.go_to_url('https://sts-q.in.top/Account/Registration?profileType=1')
-         time.sleep(3)"""
+         time.sleep(3)
 
 
-"""
-     def test_passing_operator(self, json_data: dict):
+
+    def test_passing_operator(self, json_data: dict):
          
          name_position = json_data["new_position_for_operator"]["name_position"]
          current_date = datetime.now().strftime("%d.%m.%Y")
@@ -61,26 +73,5 @@ class TestConsultant(BaseTest):
          self.consultant_page.approval_position()
          #self.specialist_select_page.select_profile_type_list(profile_type)
          #self.consultant_page.search_profile()
-         self.specialist_select_page.select_operator_from_market(operator_name)
+         self.specialist_select_page.select_operator_from_market(operator_name)"""
 
-     def test_test(self, json_data: dict):
-         profile_type = json_data["profile_types"]["profile_type_operator"]
-         specialist_country = json_data["specialist_country"]["country_name_1"]
-         self.consultant_page.consultant_login(os.getenv("EMAIL_CONS"), os.getenv("PASSWORD_CONS"))
-         self.consultant_page.select_menu_market()
-         time.sleep(3)
-         self.consultant_page.search_profile()
-         self.specialist_select_page.select_profile_type_list(profile_type)
-         time.sleep(5)
-         #self.consultant_page.search_country()
-         #self.specialist_select_page.select_specialist_country(specialist_country)
-         self.consultant_page.search_btn()
-
-
-     def test_1(self, json_data: dict):
-         self.consultant_page.consultant_login(os.getenv("EMAIL_CONS"), os.getenv("PASSWORD_CONS"))
-         self.consultant_page.select_menu_market()
-         time.sleep(3)
-         self.consultant_page.femail_btn()
-         time.sleep(1)
-         self.consultant_page.search_btn()"""
